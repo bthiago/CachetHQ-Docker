@@ -1,6 +1,6 @@
 FROM nginx:1.13.2-alpine
 
-MAINTAINER Alt Three <support@alt-three.com>
+MAINTAINER Baltha <bthiago@gmail.com>
 
 EXPOSE 8000
 CMD ["/sbin/entrypoint.sh"]
@@ -76,7 +76,7 @@ RUN php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php')
 WORKDIR /var/www/html/
 USER www-data
 
-RUN wget https://github.com/cachethq/Cachet/archive/${cachet_ver}.tar.gz && \
+RUN wget https://github.com/bthiago/Cachet/archive/${cachet_ver}.tar.gz && \
     tar xzvf ${cachet_ver}.tar.gz --strip-components=1 && \
     chown -R www-data /var/www/html && \
     rm -r ${cachet_ver}.tar.gz && \

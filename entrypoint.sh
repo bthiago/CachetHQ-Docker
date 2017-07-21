@@ -117,6 +117,12 @@ initialize_system() {
   NEXMO_SECRET=${NEXMO_SECRET:-null}
   NEXMO_SMS_FROM=${NEXMO_SMS_FROM:-Cachet}
 
+  GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-null}
+  GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET:-null}
+  GOOGLE_REDIRECT_URL=${GOOGLE_REDIRECT_URL:-null}
+  GOOGLE_ENABLED_DOMAIN=${GOOGLE_ENABLED_DOMAIN:-null}
+
+
   PHP_MAX_CHILDREN=${PHP_MAX_CHILDREN:-5}
 
   # configure env file
@@ -124,8 +130,10 @@ initialize_system() {
     keygen="$(sudo php artisan key:generate)"
     echo "${keygen}"
     appkey=$(echo ${keygen} | grep -oP '(?<=\[).*(?=\])')
-    echo "Please set ${appkey} as your APP_KEY variable in the environment or docker-compose.yml and re-launch"
-    exit 1
+    #echo "Please set ${appkey} as your APP_KEY variable in the environment or docker-compose.yml and re-launch"
+    #exit 1
+    APP_KEY=$(echo ${keygen} | cut -d' ' -f3 | sed 's/\[//g' | sed 's/\]//g')
+    echo "Setting APP_KEY to ${APP_KEY}"
   fi
 
   sed 's,{{APP_KEY}},'${APP_KEY}',g' -i /var/www/html/.env
@@ -168,6 +176,11 @@ initialize_system() {
   sed 's,{{NEXMO_KEY}},'"${NEXMO_KEY}"',g' -i /var/www/html/.env
   sed 's,{{NEXMO_SECRET}},'"${NEXMO_SECRET}"',g' -i /var/www/html/.env
   sed 's,{{NEXMO_SMS_FROM}},'"${NEXMO_SMS_FROM}"',g' -i /var/www/html/.env
+
+  sed 's,{{GOOGLE_CLIENT_ID}},'"${GOOGLE_CLIENT_ID}"',g' -i /var/www/html/.env
+  sed 's,{{GOOGLE_CLIENT_SECRET}}},'"${GOOGLE_CLIENT_SECRET}"',g' -i /var/www/html/.env
+  sed 's,{{GOOGLE_REDIRECT_URL}},'"${GOOGLE_REDIRECT_URL}"',g' -i /var/www/html/.env
+  sed 's,{{GOOGLE_ENABLED_DOMAIN}},'"${GOOGLE_ENABLED_DOMAIN}"',g' -i /var/www/html/.env
 
   sudo sed 's,{{PHP_MAX_CHILDREN}},'"${PHP_MAX_CHILDREN}"',g' -i /etc/php7/php-fpm.d/www.conf
 

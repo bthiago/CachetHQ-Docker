@@ -15,4 +15,4 @@ compose-up:
 	docker-compose up
 
 build:
-	docker build -t cachet/docker	.
+	docker build -t cachet-baltha/docker .
