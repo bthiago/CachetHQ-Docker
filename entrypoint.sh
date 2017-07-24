@@ -178,7 +178,7 @@ initialize_system() {
   sed 's,{{NEXMO_SMS_FROM}},'"${NEXMO_SMS_FROM}"',g' -i /var/www/html/.env
 
   sed 's,{{GOOGLE_CLIENT_ID}},'"${GOOGLE_CLIENT_ID}"',g' -i /var/www/html/.env
-  sed 's,{{GOOGLE_CLIENT_SECRET}}},'"${GOOGLE_CLIENT_SECRET}"',g' -i /var/www/html/.env
+  sed 's,{{GOOGLE_CLIENT_SECRET}},'"${GOOGLE_CLIENT_SECRET}"',g' -i /var/www/html/.env
   sed 's,{{GOOGLE_REDIRECT_URL}},'"${GOOGLE_REDIRECT_URL}"',g' -i /var/www/html/.env
   sed 's,{{GOOGLE_ENABLED_DOMAIN}},'"${GOOGLE_ENABLED_DOMAIN}"',g' -i /var/www/html/.env
 
