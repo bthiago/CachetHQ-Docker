@@ -81,7 +81,8 @@ RUN wget https://github.com/bthiago/Cachet/archive/${cachet_ver}.tar.gz && \
     chown -R www-data /var/www/html && \
     rm -r ${cachet_ver}.tar.gz && \
     php /bin/composer.phar global require "hirak/prestissimo:^0.3" && \
-    php /bin/composer.phar install --no-dev -o && \
+    #php /bin/composer.phar install --no-dev -o && \
+    php /bin/composer.phar install -o && \
     rm -rf bootstrap/cache/*
 
 COPY conf/php-fpm-pool.conf /etc/php7/php-fpm.d/www.conf
