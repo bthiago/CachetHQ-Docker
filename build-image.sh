@@ -1,1 +1,2 @@
-docker build --no-cache --build-arg cachet_ver=b2.3.13 -t  cachet-baltha/docker .
+version=v0.1
+docker build --no-cache --build-arg cachet_ver=$version -t  cachet-baltha/docker:$version .
